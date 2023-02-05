@@ -1,0 +1,40 @@
+#!/bin/bash
+
+#Query Logs App Location
+#/etc/dns/config/apps/Query Logs (Sqlite)/
+#
+#Files in Directory
+#
+#Microsoft.Data.Sqlite.dll
+#QueryLogsSqliteApp.deps.json
+#QueryLogsSqliteApp.dll
+#QueryLogsSqliteApp.pdb
+#SQLitePCLRaw.batteries_v2.dll
+#SQLitePCLRaw.core.dll
+#SQLitePCLRaw.provider.e_sqlite3.dll
+#dnsApp.config
+#querylogs.db
+#
+#
+#/etc/dns/config/apps/Query Logs (Sqlite)/querylogs.db
+
+VAR_ERR=0
+
+VAR_DB_FILE_LOC="/etc/dns/config/apps/Query Logs (Sqlite)/querylogs.db"
+
+VAR_DATE_FILESAFE=$(date | tr " " "_" | tr "'\'" "_" | tr ":" "_")
+
+VAR_DB_ZIPPED_FILE_LOC="/tmp/querylogs-$VAR_DATE_FILESAFE"
+
+echo "Starting Aggregation Process..."
+
+sleep 5 &&
+
+tar --create --gzip --verbose --file "$VAR_DB_ZIPPED_FILE_LOC.tar.gz" "$VAR_DB_FILE_LOC" &&
+
+#TODO Export to aggregate storage
+#TODO Create storage archive
+
+
+
+exit 0
